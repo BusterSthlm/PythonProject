@@ -1,0 +1,18 @@
+IPO diagram (input Process Output)
+    För att lösa programmerings problemet.
+
+Vad är en funktion
+    Funktioner ska finnas fördefinierade (float, input).
+Vad är ett argument
+    Vi skickar med argument i funktionen ("argument")
+input
+    Input tolkar alltid svaret som string. måste göras om till float eller annat för att.
+Simple dialog.
+    Simplediaglog.askfloat() Simple diaglot har funktionalitet askfloat ()
+While
+    Håll koll på att den kan bli falsk
+
+
+#TODO
+#GITHUB - RavenMaker
+#input i uppgiften - byt ut mot Simpledialog
