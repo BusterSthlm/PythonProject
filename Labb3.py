@@ -1,5 +1,6 @@
 from enum import Enum
 from tkinter import messagebox, simpledialog
+import Labb3_Uppgift1 as Uppgift1
 
 class MenyVal(Enum):
     Uppgift_1 = 1
@@ -29,30 +30,33 @@ def main():
         except TypeError:
             messagebox.showwarning("Warning","Du stänger av programet för du tryckte på cancel!")
             break
+        try:
+            if choice == MenyVal.Uppgift_1.value:
+                messagebox.showinfo("Uppgift 1","Du har valt Uppgift 1 som handlar om The kilometer converter problem!")
+                Uppgift = simpledialog.askfloat("Distance", "Hur långt avstånd i km har du kört?")
+                messagebox.showinfo("The Kilometer Converter Problem",f"Du har selectat hur många kilometer du valt som är {Uppgift} och uträkningen för detta till miles är detta:\n{Uppgift1.kilometer(Uppgift):.2f}={Uppgift}*0.6214")
+            elif choice == MenyVal.Uppgift_2.value:
+                Uppgift = messagebox.askyesno("Uppgift 2","Är du säker på att du vill starta Uppgift 2?")
 
-        if choice == MenyVal.Uppgift_1.value:
-            Uppgift = messagebox.askyesno("Uppgift 1","Är du säker på att du vill starta Uppgift 1?")
+            elif choice == MenyVal.Uppgift_3.value:
+                Uppgift = messagebox.askyesno("Uppgift 3","Är du säker på att du vill starta Uppgift 3?")
 
-        elif choice == MenyVal.Uppgift_2.value:
-            Uppgift = messagebox.askyesno("Uppgift 2","Är du säker på att du vill starta Uppgift 2?")
+            elif choice == MenyVal.Uppgift_4.value:
+                Uppgift = messagebox.askyesno("Uppgift 4","Är du säker på att du vill starta Uppgift 4?")
 
-        elif choice == MenyVal.Uppgift_3.value:
-            Uppgift = messagebox.askyesno("Uppgift 3","Är du säker på att du vill starta Uppgift 3?")
+            elif choice == MenyVal.Uppgift_5.value:
+                Uppgift = messagebox.askyesno("Uppgift 5","Är du säker på att du vill starta Uppgift 5?")
 
-        elif choice == MenyVal.Uppgift_4.value:
-            Uppgift = messagebox.askyesno("Uppgift 4","Är du säker på att du vill starta Uppgift 4?")
+            elif choice == MenyVal.Uppgift_6.value:
+                Uppgift = messagebox.askyesno("Uppgift 6","Är du säker på att du vill starta Uppgift 6?")
 
-        elif choice == MenyVal.Uppgift_5.value:
-            Uppgift = messagebox.askyesno("Uppgift 5","Är du säker på att du vill starta Uppgift 5?")
-
-        elif choice == MenyVal.Uppgift_6.value:
-            Uppgift = messagebox.askyesno("Uppgift 6","Är du säker på att du vill starta Uppgift 6?")
-
-        elif choice == MenyVal.AVSLUTA.value:
-            messagebox.showinfo("Ending", "Avslutar programmet.")
-            break
-        else:
-            messagebox.showerror("Error","Ogiltigt val, försök igen.")
+            elif choice == MenyVal.AVSLUTA.value:
+                messagebox.showinfo("Ending", "Avslutar programmet.")
+                break
+            else:
+                messagebox.showerror("Error","Ogiltigt val, försök igen.")
+        except TypeError:
+            continue
 
 
 
