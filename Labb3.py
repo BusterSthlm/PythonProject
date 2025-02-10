@@ -1,3 +1,6 @@
+from tkinter import messagebox,simpledialog
+
+###
 from enum import Enum
 from tkinter import messagebox, simpledialog
 import Labb3_Uppgift1 as Uppgift1
@@ -8,8 +11,8 @@ class MenyVal(Enum):
     Uppgift_2 = 2
     Uppgift_3 = 3
     Uppgift_4 = 4
-    Uppgift_5 = 5
-    Uppgift_6 = 6
+    Uppgift_6 = 5
+    Uppgift_7 = 6
     AVSLUTA = 7
 
 def print_meny():
@@ -45,10 +48,10 @@ def main():
                 Uppgift = messagebox.askyesno("Uppgift 4","Är du säker på att du vill starta Uppgift 4?")
 
             elif choice == MenyVal.Uppgift_5.value:
-                Uppgift = messagebox.askyesno("Uppgift 5","Är du säker på att du vill starta Uppgift 5?")
+                Uppgift = messagebox.askyesno("Uppgift 6","Är du säker på att du vill starta Uppgift 5?")
 
             elif choice == MenyVal.Uppgift_6.value:
-                Uppgift = messagebox.askyesno("Uppgift 6","Är du säker på att du vill starta Uppgift 6?")
+                Uppgift = messagebox.askyesno("Uppgift 7","Är du säker på att du vill starta Uppgift 6?")
 
             elif choice == MenyVal.AVSLUTA.value:
                 messagebox.showinfo("Ending", "Avslutar programmet.")
