@@ -31,17 +31,23 @@ def main():
             break
 
         if choice == MenyVal.Uppgift_1.value:
-            Uppgift = simpledialog.askfloat("Area","Ange radie: ")
+            Uppgift = messagebox.askyesno("Uppgift 1","Är du säker på att du vill starta Uppgift 1?")
+
         elif choice == MenyVal.Uppgift_2.value:
-            Uppgift = simpledialog.askfloat("Area längd","Ange längd: ")
+            Uppgift = messagebox.askyesno("Uppgift 2","Är du säker på att du vill starta Uppgift 2?")
+
         elif choice == MenyVal.Uppgift_3.value:
-            Uppgift = simpledialog.askfloat("Area bas", "Ange bas: ")
+            Uppgift = messagebox.askyesno("Uppgift 3","Är du säker på att du vill starta Uppgift 3?")
+
         elif choice == MenyVal.Uppgift_4.value:
-            Uppgift = simpledialog.askfloat("Area Sida","Ange sida: ")
+            Uppgift = messagebox.askyesno("Uppgift 4","Är du säker på att du vill starta Uppgift 4?")
+
         elif choice == MenyVal.Uppgift_5.value:
-            Uppgift = simpledialog.askfloat("Area Sida", "Ange sida: ")
+            Uppgift = messagebox.askyesno("Uppgift 5","Är du säker på att du vill starta Uppgift 5?")
+
         elif choice == MenyVal.Uppgift_6.value:
-            Uppgift = simpledialog.askfloat("Area Sida","Ange sida: ")
+            Uppgift = messagebox.askyesno("Uppgift 6","Är du säker på att du vill starta Uppgift 6?")
+
         elif choice == MenyVal.AVSLUTA.value:
             messagebox.showinfo("Ending", "Avslutar programmet.")
             break
