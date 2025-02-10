@@ -2,6 +2,7 @@ from enum import Enum
 from tkinter import messagebox, simpledialog
 import Labb3_Uppgift1 as Uppgift1
 
+
 class MenyVal(Enum):
     Uppgift_1 = 1
     Uppgift_2 = 2
@@ -33,8 +34,7 @@ def main():
         try:
             if choice == MenyVal.Uppgift_1.value:
                 messagebox.showinfo("Uppgift 1","Du har valt Uppgift 1 som handlar om The kilometer converter problem!")
-                Uppgift = simpledialog.askfloat("Distance", "Hur långt avstånd i km har du kört?")
-                messagebox.showinfo("The Kilometer Converter Problem",f"Du har selectat hur många kilometer du valt som är {Uppgift} och uträkningen för detta till miles är detta:\n{Uppgift1.kilometer(Uppgift,0.6214):.2f}={Uppgift}*0.6214")
+                Uppgift1.kilometer_Output()
             elif choice == MenyVal.Uppgift_2.value:
                 Uppgift = messagebox.askyesno("Uppgift 2","Är du säker på att du vill starta Uppgift 2?")
 
