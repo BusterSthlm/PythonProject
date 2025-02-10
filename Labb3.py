@@ -8,8 +8,8 @@ import Labb3_Uppgift1 as Uppgift1
 
 class MenyVal(Enum):
     Uppgift_1 = 1
-    Uppgift_2 = 2
-    Uppgift_3 = 3
+    Uppgift_10 = 2
+    Uppgift_11 = 3
     Uppgift_4 = 4
     Uppgift_6 = 5
     Uppgift_7 = 6
@@ -39,10 +39,10 @@ def main():
                 messagebox.showinfo("Uppgift 1","Du har valt Uppgift 1 som handlar om The kilometer converter problem!")
                 Uppgift1.kilometer_Output()
             elif choice == MenyVal.Uppgift_2.value:
-                Uppgift = messagebox.askyesno("Uppgift 2","Är du säker på att du vill starta Uppgift 2?")
+                Uppgift = messagebox.askyesno("Uppgift 10","Är du säker på att du vill starta Uppgift 2?")
 
             elif choice == MenyVal.Uppgift_3.value:
-                Uppgift = messagebox.askyesno("Uppgift 3","Är du säker på att du vill starta Uppgift 3?")
+                Uppgift = messagebox.askyesno("Uppgift 11","Är du säker på att du vill starta Uppgift 3?")
 
             elif choice == MenyVal.Uppgift_4.value:
                 Uppgift = messagebox.askyesno("Uppgift 4","Är du säker på att du vill starta Uppgift 4?")
