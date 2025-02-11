@@ -1,19 +1,19 @@
 from tkinter import messagebox, simpledialog
 
-def kilometer(km=0.0):
-    return km*0.6214
+def feet_to_inches(feet=0.0):
+    return feet*12
 
-def kilometer_Input():
-    return simpledialog.askfloat("Distance", "Hur långt avstånd i km har du kört?")
+def FeetToInches_Input():
+    return simpledialog.askfloat("Feet", "Hur många Feet vill du converta till Inches?")
 
-def kilometer_Output():
-    kilometers = kilometer_Input()
-    messagebox.showinfo("Feet to Inches",f"Du har selectat hur många kilometer du valt som är {kilometers} och uträkningen för detta till miles är detta:\n{kilometer(kilometers):.2f}={kilometers}*0.6214")
+def FeetToInches_Output():
+    feet = FeetToInches_Input()
+    messagebox.showinfo("Feet to Inches",f"Du har selectat hur många kilometer du valt som är {feet} och uträkningen för detta till miles är detta:\n{feet_to_inches(feet):.2f}={feet}*12")
 
 if __name__ == '__main__':
     messagebox.showinfo("Uppgift 10", "Du har valt Uppgift 10 som handlar om Feet to Inches!")
     try:
-        kilometer_Output()
+        FeetToInches_Output()
     except TypeError:
         pass
     except ValueError:
