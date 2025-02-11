@@ -36,7 +36,7 @@ def financial_advice(uträkning):
     return uträkning
 
 def min_insurance():
-    cost of house  - financial advice =
+    cost of house-financial advice =
     return
 
 #Result
