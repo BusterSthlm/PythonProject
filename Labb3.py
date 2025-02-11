@@ -42,10 +42,10 @@ def main():
         try:
             if choice == MenyVal.Uppgift_1.value:
                 messagebox.showinfo("Uppgift 1","Du har valt Uppgift 1 som handlar om The kilometer converter problem!")
-                Uppgift1.kilometer_Output()
+                Uppgift1.kilometer_Main()
             elif choice == MenyVal.Uppgift_10.value:
                 messagebox.askyesno("Uppgift 10","Du har valt Uppgift 10 som handlar om Feet to Inches!")
-                Uppgift2.FeetToInches_Output()
+                Uppgift2.FeetToInches_Main()
             elif choice == MenyVal.Uppgift_11.value:
                 messagebox.askyesno("Uppgift 11","Du har valt Uppgift 11 som handlar om Math Quiz!\nSimpla Matte frågot vill bli stälda!")
                 Uppgift3.MathQuiz_Main()
