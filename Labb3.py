@@ -21,7 +21,7 @@ def print_meny():
     message="Välj en uppgift du vill see:\n"
     #print("Välj en areaberäkning:")
     for val in MenyVal:
-        message = message + f"{val.value}. {val.name.capitalize()}\n" #egenskapern value och name för enum ger olika värden
+        message = message + f"{val.value}. {val.name.replace('_',' ')}\n" #egenskapern value och name för enum ger olika värden
     return message
 
 def main():
