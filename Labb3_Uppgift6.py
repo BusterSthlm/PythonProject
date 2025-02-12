@@ -1,8 +1,12 @@
 from tkinter import messagebox, simpledialog
-from Labb3_uppgift7 import total_value
 
 #Uppgift 6 Calories from Fat and Carbohydrates
 
+def input_gram_fat():
+    return simpledialog.askfloat("fråga", "Hur många gram fett har du blivit av med på senaste året")
+
+def input_gram_carbonhydrate():
+    return simpledialog.askfloat("fråga","Hur många gram kolhydrater har du blivit av med på senaste året")
 
 # Beräkna kalorier från fett
 def calories_from_fat(gram_fat):
@@ -24,8 +28,6 @@ def visar_svar(gram_fat,gram_carbonhydrate):
 #Frågorna till användarna
 
 if __name__ == "__main__":
-    gram_fat = simpledialog.askfloat("fråga", "Hur många gram fett har du blivit av med på senaste året")
-    gram_carbonhydrate = simpledialog.askfloat("fråga", "Hur många gram kolhydrater har du blivit av med på senaste året")
-    visar_svar(gram_fat,gram_carbonhydrate)
+    visar_svar(input_gram_fat(),input_gram_carbonhydrate())
 
 #Ant

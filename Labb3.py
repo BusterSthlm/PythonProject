@@ -1,14 +1,11 @@
-from tkinter import messagebox,simpledialog
-
-###
 from enum import Enum
 from tkinter import messagebox, simpledialog
 import Labb3_Uppgift1 as Uppgift1
 import Labb3_Uppgift10 as Uppgift2
 import Labb3_Uppgift11 as Uppgift3
-"""import Labb3_Uppgift4 as Uppgift4
+import Labb3_Uppgift4 as Uppgift4
 import Labb3_Uppgift6 as Uppgift5
-import Labb3_Uppgift7 as Uppgift6"""
+import Labb3_Uppgift7 as Uppgift6
 
 
 class MenyVal(Enum):
@@ -50,14 +47,14 @@ def main():
                 messagebox.askyesno("Uppgift 11","Du har valt Uppgift 11 som handlar om Math Quiz!\nSimpla Matte frågot vill bli stälda!")
                 Uppgift3.MathQuiz_Main()
             elif choice == MenyVal.Uppgift_4.value:
-                Uppgift = messagebox.askyesno("Uppgift 4","Är du säker på att du vill starta Uppgift 4?")
-
+                messagebox.askyesno("Uppgift 4","Du har valt Uppgift 4 som handlar om Automobile Costs!")
+                Uppgift4.show_new_price(Uppgift4.replacement_cost())
             elif choice == MenyVal.Uppgift_6.value:
-                Uppgift = messagebox.askyesno("Uppgift 6","Är du säker på att du vill starta Uppgift 5?")
-
+                messagebox.askyesno("Uppgift 6","Du har valt Uppgift 6 som handlar om Calories from Fat and Carbohydrates!")
+                Uppgift5.visar_svar(Uppgift5.input_gram_fat(),Uppgift5.input_gram_carbonhydrate())
             elif choice == MenyVal.Uppgift_7.value:
-                Uppgift = messagebox.askyesno("Uppgift 7","Är du säker på att du vill starta Uppgift 6?")
-
+                messagebox.askyesno("Uppgift 7","Du har valt Uppgift 7 som handlar om Stadium Seating!")
+                Uppgift6.main()
             elif choice == MenyVal.AVSLUTA.value:
                 messagebox.showinfo("Ending", "Avslutar programmet.")
                 break
