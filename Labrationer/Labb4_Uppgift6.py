@@ -1,4 +1,4 @@
-# UPG 6
+# UPG 6 - Average numbers
 
 """
 Assume a file containing a series of integers is named numbers.txt and exists on the
@@ -6,8 +6,6 @@ computer’s disk. Write a program that calculates the average of all the number
 file.
 
 """
-from pyexpat.errors import messages
-
 
 # Variables
 def calculation():
@@ -17,8 +15,6 @@ def calculation():
     # Open the file
     try:
         with open('numbers.txt', 'r', encoding='utf-8') as file:
-            # läser varje rad
-            file.readline()
 
             for line in file:
                 stripped_line = line.strip()  # Strip tar birt onödiga mellanrum
@@ -43,4 +39,6 @@ def calculation():
 
 
 # kallar funktionen
-calculation()
+if __name__ == '__main__':
+    calculation()
+

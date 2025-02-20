@@ -27,19 +27,3 @@ def file_Head_Display():
 
 file_Head_Display()
 
-"""
-            # Read lines one by one
-            for i, line in enumerate(file):
-                if i < 5:  # Only process the first 5 lines
-                    print(line.strip())  # Remove leading/trailing whitespace and print
-                else:
-                    break  # Stop after the first 5 lines
-
-    except FileNotFoundError:
-        print("The file 'numbers.txt' was not found.")
-
-# Call the function
-file_Head_Display()
-
-
-"""
