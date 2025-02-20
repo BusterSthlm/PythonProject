@@ -6,28 +6,26 @@ first five lines of the file’s contents. If the file contains less than five l
 file’s entire contents.
 
 """
-from tkinter.messagebox import showinfo
 
-from pyexpat.errors import messages
 
 
 def file_Head_Display():
     try:
-        # Open the file to read
-        with open('numbers.txt', 'r', encoding='utf-8') as file:
+        # Testar att öppna filen
+        with open('numbers.txt', 'r', encoding='utf-8') as file: #öppnar filen med while på säkert sätt
             # Läser alla rader i filen
             lines = file.readlines()
             # Skriva ut första fem raderna
             for line in lines[:5]:
                 print(line.strip()) # Skriva ut varje rad
-            if line < lines[5]:
-                    print(lines)
+
+
 
     except FileNotFoundError:
         print("the file Numbers.txt was not found")
 
 
-print(file_Head_Display())
+file_Head_Display()
 
 """
             # Read lines one by one
