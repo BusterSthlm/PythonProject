@@ -1,4 +1,4 @@
-# UPG 6
+# UPG 6 - Average numbers
 
 """
 Assume a file containing a series of integers is named numbers.txt and exists on the
@@ -6,8 +6,6 @@ computer’s disk. Write a program that calculates the average of all the number
 file.
 
 """
-from pyexpat.errors import messages
-
 
 # Variables
 def calculation():
@@ -17,33 +15,30 @@ def calculation():
     # Open the file
     try:
         with open('numbers.txt', 'r', encoding='utf-8') as file:
-            print(file.read())  # Example to confirm the file can be read
-
-            # Read each line
-            file.seek(0)  # Reset file pointer after the first read
 
             for line in file:
-                stripped_line = line.strip()  # Remove spaces
-                print(f"Processing line: '{stripped_line}'")  # Debug print to show lines being processed
-                if stripped_line:  # Ensure line is not empty
+                stripped_line = line.strip()  # Strip tar birt onödiga mellanrum
+
+                if stripped_line:  # kollar att filen inte är tom
                     try:
                         number = int(stripped_line)  # Convert to integer
-                        total_summa += number  # Add to sum
-                        count += 1  # Increment count
-                        print(f"Total sum so far: {total_summa}, count: {count}")
+                        total_summa += number  # Lägger
+                        count += 1  # Plussar på det nya värdet
                     except ValueError:
-                        print(f"Skipping invalid line: {stripped_line}")
+                        print(f"struntade i ogilltiga rader: {stripped_line}")
 
-        # Calculate and display the result
-        if count > 0:
-            print(f"Sum of all your numbers is: {total_summa}")
-            print(f"Average of all numbers is: {total_summa / count}")
-        else:
-            print("Tyvärr, det saknas rader i den här filen")  # If no valid numbers were found
+            # Räknar och skriver ut total summan delat på antalet
+            if count > 0:
+                print(f"summan av alla nummer är: {total_summa}")
+                print(f"genomsnittet är: {total_summa / count}")
+            else:
+                print("Tyvärr, det saknas rader i den här filen")
 
     except FileNotFoundError:
-        print("File 'numbers.txt' not found.")
+        print("Filen 'numbers.txt' hittades inte.")
 
 
-# Call the function
-calculation()
+# kallar funktionen
+if __name__ == '__main__':
+    calculation()
+
