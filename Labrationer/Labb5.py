@@ -1,4 +1,7 @@
+
 from tkinter import messagebox, simpledialog
+from tkinter.messagebox import showinfo
+from tkinter.simpledialog import askstring
 
 groceries = ["bröd\n", "mjölk\n"]
 
@@ -22,11 +25,11 @@ def main():
             case 8:
                 Save_And_Add_to_list("Saved Shoping list","You shoping list have been saved!")
             case 9: #Jack
-                Add_item_to_list_specific_place("Add item to specific place in shopping list","Your item have been added to: ")
+                Add_item_to_list_specific_place()
             case 10:
-                Order_list_alphabeticly("Oder list according to the english alphabet a-z")
+                Order_list_alphabeticly()
             case 11:
-                Empty_whole_list("Empty shopping list"," Your list have been trashed ")
+                Empty_whole_list()
             case 12:
                 messagebox.showinfo("Avslutar","Programet håller på att avslutar sig!")
                 break
@@ -136,19 +139,26 @@ def Save_And_Add_to_list(titel,message):
         messagebox.showinfo(titel,message)
 
 
-# Add item back to the list in a specific place.
+# 9. Add item back to the list in a specific place.
 def Add_item_to_list_specific_place():
-    pass
+   new_item = simpledialog.askstring("New item","Add new item to shoppinglist to second place in the list :")
+   global groceries
+   groceries.insert(1,new_item)
+   print(groceries)
+
 
 # 10. Order
-def Order_list_alphabeticly(user_shop_cart_list):
-    x = sorted(user_shop_cart_list)
-    print(x)
+def Order_list_alphabeticly():
+    groceries.sort(key= str.lower)
+    print(groceries)
+
 
 
 # 11.Empty_whole_list
 def Empty_whole_list():
-    pass
+    groceries.clear()
+    print(f"Your {groceries} list have been cleared")
+
 
 
 if __name__ == '__main__':
