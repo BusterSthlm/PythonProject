@@ -21,12 +21,12 @@ def main():
                 remove_text(str(User_input("Remove item",f"Välj ett namn i från shoping listan att ta bort")))
             case 8:
                 Save_And_Add_to_list("Saved Shoping list","You shoping list have been saved!")
-            case 9:
-                pass
+            case 9: #Jack
+                Add_item_to_list_specific_place("Add item to specific place in shopping list","Your item have been added to: ")
             case 10:
-                pass
+                Order_list_alphabeticly("Oder list according to the english alphabet a-z")
             case 11:
-                pass
+                Empty_whole_list("Empty shopping list"," Your list have been trashed ")
             case 12:
                 messagebox.showinfo("Avslutar","Programet håller på att avslutar sig!")
                 break
@@ -50,18 +50,18 @@ def User_input(titel,message):
     return simpledialog.askstring(titel,message)+"\n"
 #menu list
 def menu_list():
-    menu=("läs in text fil & lägger till i listan 1:\n\n",
-          "skriv ut listan 2:\n\n",
-          "Lägg till varor/artiklar 3:\n\n",
-          "Skriv ut hur många varor du har valt 4:\n\n",
-          "Ange ett index för att se varan du valt 5:\n\n",
-          "Ta bort vara/artikel från listan av positionen 6:\n\n",
-          "Ta bort vara/artikel från listan av namnet 7:\n\n",
-          "Spara listan i en txt fil 8:\n\n",
-          "Lägg till vara på en specifik plats i listan 9:\n\n",
-          "Sotera listan i bokstavsordning 10:\n\n",
-          "Töm hela listan på varor 11:\n\n",
-          "Avsluta programet 12:\n")
+    menu=("1. läs in text fil & lägger till i listan :\n\n",
+          "2. Skriv ut listan:\n\n",
+          "3. Lägg till varor/artiklar:\n\n",
+          "4. Skriv ut hur många varor du har valt:\n\n",
+          "5. Ange ett index för att se varan du valt:\n\n",
+          "6. Ta bort vara/artikel från listan av positionen:\n\n",
+          "7. Ta bort vara/artikel från listan av namnet:\n\n",
+          "8. Spara listan i en txt fil:\n\n",
+          "9. Lägg till vara på en specifik plats i listan:\n\n",
+          "10. Sortera listan i bokstavsordning:\n\n",
+          "11. Töm hela listan på varor:\n\n",
+          "12. Avsluta programet:\n")
     return menu
 def render_menu_list(menu):
     messege=""
@@ -128,12 +128,27 @@ def read_list():
     else:
         messagebox.showinfo("List", f"Shoping listan ser ut så här\n{user_shop_cart_list}")
 
-#write and save the groceries list in a txt file
+# write and save the groceries list in a txt file
 def Save_And_Add_to_list(titel,message):
     with open('user_shop_list.txt', 'w', encoding='utf-8') as fil:
         for items in groceries:
             fil.write(items)
         messagebox.showinfo(titel,message)
+
+
+# Add item back to the list in a specific place.
+def Add_item_to_list_specific_place():
+    pass
+
+# 10. Order
+def Order_list_alphabeticly(user_shop_cart_list):
+    x = sorted(user_shop_cart_list)
+    print(x)
+
+
+# 11.Empty_whole_list
+def Empty_whole_list():
+    pass
 
 
 if __name__ == '__main__':
