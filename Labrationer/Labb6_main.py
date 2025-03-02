@@ -150,7 +150,7 @@ def shoping_Item(screen_pick):
         name = input("Vad heter varan du har valt?\n")
         count = int(input("\nHur många antal av varan har du valt?\n"))
         price = int(input("\nHur mycket kostar varan?\n"))
-    complited_list=[name,count,price]
+    complited_list=cart.Shopping_item(name,count,price)
     return complited_list
 #meny listan__________________________________________________________________________________________________________________________________
 def get_choice(screen_pick):

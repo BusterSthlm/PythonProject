@@ -1,7 +1,5 @@
 
 from tkinter import messagebox, simpledialog
-from tkinter.messagebox import showinfo
-from tkinter.simpledialog import askstring
 
 groceries = ["bröd\n", "mjölk\n"]
 
@@ -149,7 +147,7 @@ def Add_item_to_list_specific_place():
 
 # 10. Order
 def Order_list_alphabeticly():
-    groceries.sort(key= str.lower)
+    groceries.sort(key=str.lower)
     print(groceries)
 
 
