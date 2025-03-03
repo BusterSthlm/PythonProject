@@ -98,15 +98,10 @@ def change_item_choice(screen_pick,shop_list):
                 print(f"Namn valt: {list_item.get_name()}\n\nNya informationen:\nAntal: {list_item.get_count()}\nPriset: {list_item.get_price()}\n\n")
 #Renderar listan ut på skärmen________________________________________________________________________________________________________________
 def render_shoping_list(screen_pick,shop_list):
-    total_list=""
-    count = 0
-    for list in shop_list:
-        count+=1
-        total_list = count
     if screen_pick:
-        return messagebox.showinfo("Items",f"Detta är hur många items du har i din lista: {total_list}")
+        return messagebox.showinfo("Items",f"Detta är hur många items du har i din lista: {len(shop_list)}")
     else:
-        return print(f"Detta är hur många items du har i din lista: {total_list}\n")
+        return print(f"Detta är hur många items du har i din lista: {len(shop_list)}\n")
 #renderar ut listans info________________
 def item_info(screen_pick,shop_list):
     if screen_pick:
