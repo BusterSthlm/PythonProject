@@ -1,5 +1,7 @@
 import Labb6_Class as cart
-from tkinter import messagebox, simpledialog
+import tkinter as tk
+from tkinter import messagebox, simpledialog, PhotoImage
+
 
 #Main funktionen och körningen________________________________________________________________________________________________________________
 def main():
@@ -29,10 +31,13 @@ def main():
                 case 7:
                     remove_item_by_name_or_id(screen_pick,shop_list)
                 case 8:
+                    empty_shopping_list()
                     pass
                 case 9:
+                    show_product_img()
                     pass
                 case 10:
+                    calculate_total_price_per_product()
                     pass
                 case 11:
                     program_render_ending(screen_pick)
@@ -160,28 +165,54 @@ def get_choice(screen_pick):
         choice = 11
     return choice
 def menu_list():
-    menu=("Lägg till i varor 1:\n\n",
-          "skriv ut alla varor element 2:\n\n",
-          "Välj en vara och sicka ut all info om varan 3:\n\n",
-          "Skriv ut hur många varor du har valt 4:\n\n",
-          "Skriv ut alla varor i shoping korgen 5:\n\n",
-          "Uppdatera antal och price på vald prudukt 6:\n\n",
-          "Ta bort varan baserat på position eller namn i listan 7:\n\n",
-          "Ta bort hela listan 8:\n\n",
-          "Visa bild påå sökt vara 9:\n\n",
-          "Uträkning på totala kostnaden av prudukten 10:\n\n",
-          "Avsluta programet 11:\n")
+    menu=("1. Lägg till i varor:\n\n",
+          "2. skriv ut alla varor element:\n\n",
+          "3. Välj en vara och sicka ut all info om varan:\n\n",
+          "4. Skriv ut hur många varor du har valt:\n\n",
+          "5. Skriv ut alla varor i shoping korgen:\n\n",
+          "6. Uppdatera antal och price på vald prudukt:\n\n",
+          "7. Ta bort varan baserat på position eller namn i listan:\n\n",
+          "8. Ta bort hela listan:\n\n",
+          "9. Visa bild påå sökt vara:\n\n",
+          "10. Uträkning på totala kostnaden av prudukten:\n\n",
+          "11. Avsluta programet:\n")
     return menu
 def render_menu_list(menu):
     messege=""
     for list in menu:
         messege+=list
     return messege
+
+# 8.Rensar hela shopping listan
+def empty_shopping_list(shop_list):
+    shop_list.clear()
+# 9. Via produkt bild
+def show_product_img():
+    # Skapat fönster.
+    parent = tk.Tk()
+    parent.title("Produkt bild")
+
+    # Hämtar bilden från samma mapp
+    image = PhotoImage(file="Ketchup.png")
+
+    # Bild titel
+    image_label = tk.Label(parent, image=image)
+    image_label.pack()
+
+    # Start the Tkinter event loop
+    parent.mainloop()
+
+
+
+# 10. Beräkna total priset för en vara
+
+
 def program_render_ending(screen_pick):
     if screen_pick:
         messagebox.showinfo("Avslutar","Avslutar programet!")
     else:
         print(f"Avslutar program")
+
 
 if __name__ == '__main__':
     main()
