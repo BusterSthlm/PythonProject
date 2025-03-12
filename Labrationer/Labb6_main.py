@@ -37,7 +37,7 @@ def main():
                     show_product_img()
                     pass
                 case 10:
-                    calculate_total_price_per_product()
+                    calculate_total_price_for_product(shop_list)
                     pass
                 case 11:
                     program_render_ending(screen_pick)
@@ -205,8 +205,13 @@ def show_product_img():
 
 
 # 10. Beräkna total priset för en vara
-def calculate_total_price_per_product():
+def calculate_total_price_for_product(shop_list):
+    product_name = input("Ange namnet på produkten du vill kolla priset för:  ")
 
+    for item in shop_list:
+        #print(item.get_name())
+        if item.get_name() == product_name:
+            print(f'total pris: {item.get_count() * item.get_price()} kr ')  # Multiplicera pris × antal
 
 
 def program_render_ending(screen_pick):
