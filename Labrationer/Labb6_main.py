@@ -48,7 +48,7 @@ def main():
 
 
 
-#Ta bort items ur listan______________________________________________________________________________________________________________________
+#7. Ta bort items ur listan______________________________________________________________________________________________________________________
 def remove_item_by_name_or_id(screen_pick,shop_list):
     count=0
     total_list=0
@@ -137,7 +137,7 @@ def render_all_item_info(screen_pick,shop_list):
         messagebox.showinfo("All information",f"Här är all information om alla items:\n{total_info}")
     else:
         print(f"Här är all information om alla items:\n{total_info}")
-#Add items____________________________________________________________________________________________________________________________________
+# 1. Add items____________________________________________________________________________________________________________________________________
 def shoping_Item(screen_pick):
     name=""
     count=0
@@ -205,6 +205,8 @@ def show_product_img():
 
 
 # 10. Beräkna total priset för en vara
+def calculate_total_price_per_product():
+
 
 
 def program_render_ending(screen_pick):
