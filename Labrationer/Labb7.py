@@ -1,21 +1,17 @@
 import Labb6_Class as shoping_item
+import Labb7_Class as gui
 import tkinter as tk
-from tkinter import ttk
 import json
 
+roBool=gui.GUI()
 
 def main():
-    userList = readUserItems()
-    root = tk.Tk()
-    root.geometry("400x440")
-    wrightUserItemlist(userList)
-    get_menu_text(root)
-    button_maker(root)
-
-    root.mainloop()
-
-
-
+    #userList=get_userList()
+    roBool.get_root().title("Labb7 GUI")
+    gemetry(roBool.get_root(),roBool.get_bools())
+    get_menu_text(roBool.get_root())
+    button_maker(roBool.get_root())
+    roBool.get_root().mainloop()
 #menu text rendering
 def get_menu_text(root):
     message=["1. Lägg till varor",
@@ -33,26 +29,35 @@ def get_menu_text(root):
         tk.Label(root, text=message[i]).grid(row=i+1, column=1, columnspan=1, rowspan=1)
 
 def button_maker(root):
-    comandPromts=[]
+    comandPromts=[wrightUserItemlist]
+    #Lägg till ,command=comandPromts[i-1] när färdig med funktonerna
     for i in range(1,12):
-        tk.Button(root, text=str(i),width=5,height=1,borderwidth=1, relief="solid",command=comandPromts[i-1]).grid(row=i, column=5, columnspan=1,rowspan=1,pady=7,padx=40)
+        button=tk.Button(root, text=str(i),width=5)
+        button.grid(row=i, column=5, columnspan=1,rowspan=1,pady=7,padx=40)
+        button.configure(command=comandPromts[0])
 
+def gemetry(root,bools):
+    return root.geometry(f"{get_size_up(bools)}x440")
 
-
-
-
-
-
+def get_size_up(value):
+    size=""
+    if value:
+        size="640"
+    else:
+        size="380"
+    return size
 
 
 #Read and wright to JSON file and auto generate the list again to see all items corect
 #lägg till Items i en array och en auto genererande ID lista
+def get_userList():
+    userList = readUserItems()
+    return userList
+
 def AddItemToDictanaryWithNameID(Value):
     dictanary={}
     count=1
-    #print(Value)
     for items in Value:
-        #print(items)
         ListItem = []
         key = "Item"
         key=f"{key+str(count)}"
@@ -65,24 +70,27 @@ def AddItemToDictanaryWithNameID(Value):
 
 def add_items(items):
     userList=[]
-    #print(items)
     for listValue in items.values():
-        #print(listValue)
-        #print(listKey)
-        #print(listValue)
         Item_list=shoping_item.Shopping_item(listValue[0],listValue[1],listValue[2])
-        #print(Item_list)
         userList.append(Item_list)
-        #print(Item_list)
     return userList
 
+
+
+
+
+
+
 #läss och skriva över spar filen
-def wrightUserItemlist(item_list):
+def wrightUserItemlist():
+    roBool.set_bools(True)
+    gemetry(roBool.get_root(), roBool.get_bools())
+    save=tk.Label(roBool.get_root(),text="Sparat shoping listan i en JSON fil")
+    save.grid(row=1, column=20, columnspan=20, rowspan=1)
+    item_list=get_userList()
     shopList=AddItemToDictanaryWithNameID(item_list)
-    #print(shopList)
     with open('shoping_list.JSON', 'w', encoding='utf-8-sig') as file:
         file.write(json.dumps(shopList))
-
 
 def readUserItems():
     listing=[]
