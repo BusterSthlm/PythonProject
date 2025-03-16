@@ -22,4 +22,4 @@ class Shopping_item:
 
     #str string variable som sickar ut slut texten
     def __str__(self):
-        return f"Du valde item:\nNamn: {self.__name}\nAntal: {self.__count}st\nPriset: {self.__price}kr"
+        return f"Du valde item:\nNamn: {self.__name}\nAntal: {self.__count}st\nPriset: {self.__price}kr\n{20*"-"}\n"
