@@ -1,3 +1,5 @@
+from fontTools.unicodedata import script
+
 import Labb6_Class as cart
 import tkinter as tk
 from tkinter import messagebox, simpledialog, PhotoImage
@@ -31,13 +33,13 @@ def main():
                 case 7:
                     remove_item_by_name_or_id(screen_pick,shop_list)
                 case 8:
-                    empty_shopping_list()
+                    empty_shopping_list(shop_list)
                     pass
                 case 9:
                     show_product_img()
                     pass
                 case 10:
-                    calculate_total_price_for_product(shop_list)
+                    calculate_total_price_for_product(shop_list,screen_pick)
                     pass
                 case 11:
                     program_render_ending(screen_pick)
@@ -185,7 +187,13 @@ def render_menu_list(menu):
 
 # 8.Rensar hela shopping listan
 def empty_shopping_list(shop_list):
-    shop_list.clear()
+
+    if shop_list:
+        shop_list.clear()
+        return messagebox.showinfo("Shop list",f" Din lista har tömts. ")
+    else:
+       
+        return print(f"Din {shop_list} har tömts")
 # 9. Via produkt bild
 def show_product_img():
     # Skapat fönster.
@@ -205,13 +213,17 @@ def show_product_img():
 
 
 # 10. Beräkna total priset för en vara
-def calculate_total_price_for_product(shop_list):
-    product_name = input("Ange namnet på produkten du vill kolla priset för:  ")
-
-    for item in shop_list:
-        #print(item.get_name())
-        if item.get_name() == product_name:
-            print(f'total pris: {item.get_count() * item.get_price()} kr ')  # Multiplicera pris × antal
+def calculate_total_price_for_product(shop_list, screen_pick):
+    if screen_pick: # kollar valet av användaren
+        product_name = simpledialog.askstring("Fråga","Ange namnet på produkten du vill se priset för (total): ")
+        for item in shop_list:
+            if item.get_name() == product_name:
+                messagebox.showinfo("Total pris ",f"totala priset för alla {product_name} är {item.get_count() * item.get_price()}")
+    else: #Skriver ut med print
+        product_name = str(input("Ange namnet på produkten du vill se priset för (total): "))
+        for item in shop_list: # loopar igenom listan med alla som har samma namn
+            if item.get_name() == product_name: # Om namnet stämmer gångrar den antalet med priset.
+                 print(f"totala priset för alla {product_name} är {item.get_count() * item.get_price()}")
 
 
 def program_render_ending(screen_pick):
