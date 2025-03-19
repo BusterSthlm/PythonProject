@@ -192,7 +192,7 @@ def empty_shopping_list(shop_list):
         shop_list.clear()
         return messagebox.showinfo("Shop list",f" Din lista har tömts. ")
     else:
-       
+
         return print(f"Din {shop_list} har tömts")
 # 9. Via produkt bild
 def show_product_img():
@@ -210,6 +210,17 @@ def show_product_img():
     # Start the Tkinter event loop
     parent.mainloop()
 
+    root = tk.Tk()
+    root.title('Visa bild i Tkinter')
+    root.geometry('350x250')
+
+    bild = Image.open('vulkaner.png')
+    bild = bild.resize((300, 200))
+    img = ImageTk.PhotoImage(bild)  # Skapa bildobjekt
+
+    label = tk.Label(root, image=img)
+    label.image = img  # Behåll referens till bilden
+    label.grid(row=1,column=,)
 
 
 # 10. Beräkna total priset för en vara
