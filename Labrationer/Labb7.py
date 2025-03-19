@@ -2,6 +2,7 @@ import Labb6_Class as shoping_item
 import Labb7_Class as gui
 import tkinter as tk
 import json
+import os
 
 import requests
 from bs4 import BeautifulSoup
@@ -311,15 +312,34 @@ def readUserItems():
     return listing
 ############### Empty Shopping list ################
 def emptyShoppingList():
-    #Skapar ut vyn för GUI
+
     roBool.set_bools(True)
     gemetry(roBool.get_root(), roBool.get_bools())
-    frame = tk.Frame(roBool.get_root(), pady=50, padx=40)
-    frame.config(background="White")
+
+    frame = tk.Frame(roBool.get_root(), pady=50, padx=40, background="White")
     frame.grid(row=2, column=30)
+
+    # Labels & Buttons
     tk.Label(frame, text="Rensa listan").grid(row=1, column=20, pady=7, padx=5)
     tk.Text(frame, height=5, width=30).grid(row=4, column=0, columnspan=3)
+
+
+    # Skriver ut bekräftelse
+    result_label = tk.Label(frame, text="", background="White")
+    result_label.grid(row=3, column=0, pady=10)
+    tk.Button(frame, text="töm listan", command=lambda:empty(result_label)).grid(row=2, column=0)  # Fixed button command
+
+def empty(resultat):
     groceries.clear()
+    try:
+        with open('shoping_list.JSON', 'r', encoding='utf-8-sig') as file:
+            os.remove('shoping_list.JSON')
+    except FileNotFoundError:
+        pass
+    resultat.config(text="listan har blivit tömt")
+
+
+
 
 ######################### SHOW IMG FROM SEARH #############
 def showImgFromSearch():
@@ -348,7 +368,7 @@ def fetch_image(query,frame):
     soup = BeautifulSoup(response.text, "html.parser")
 
     image_tags = soup.find_all("img")
-    img_label= tk.Lable(frame)
+    img_label= tk.Label(frame)
     if len(image_tags) > 1:
         img_url = image_tags[1]["src"]  # Första bilden är oftast Googles logga, så vi tar den andra
         image_response = requests.get(img_url)
@@ -367,24 +387,34 @@ def fetch_image(query,frame):
 
 
 
+
 def totalCostPerItem():
-#Skapar ut vyn för GUI
     roBool.set_bools(True)
     gemetry(roBool.get_root(), roBool.get_bools())
-    frame = tk.Frame(roBool.get_root(), pady=50, padx=40)
+    frame = tk.Frame(roBool.get_root(), pady=200, padx=110)
     frame.config(background="White")
     frame.grid(row=2, column=30)
-    tk.Label(frame, text="Visa priset total priset för alla av samma vara ").grid(row=1, column=20, pady=7, padx=5)
+    tk.Label(frame, text="Sök på en vara för att få fram totala priset").grid(row=2, column=20)
+    tk.Label(frame,text="Namn:").grid(row=3, column=20)
+    product_name = tk.Entry(frame, borderwidth=1, relief="solid")
+    product_name.grid(row=3, column=25)
+    tk.Button(frame, text="Beräkna varan",  command=lambda:calculation(product_name,frame)).grid(row=4, column=20 ) # funktionnamn, prodctu name, frame
 
-#test
-    totalCost = tk.Label(frame,text="priset (för en produkt):")
-    totalCost.grid(row=4, column=20,pady=50,padx=40)
-    price = tk.Entry(frame,borderwidth=1, relief="solid")
-    price.grid(row=4, column=22)
-# Skapar knappen
-    button = tk.Button(frame, text="Räkna ut")
-    button.grid(row=5, column=20, pady=20)
-    #messageText.grid(row=6, column=20)
+
+
+def calculation(product_name, frame):
+    # beräkning
+    for name in groceries:
+        if name.get_name() == product_name:
+            total_price = name.get_count() * name.get_price()
+            tk.Label(frame, text=f"totala priset på varan: {total_price} kr")
+            result_label = tk.Label(frame, text="")
+            result_label.grid(row=5, column=20)
+
+
+
+
+
 
 def quit():
     exit()
