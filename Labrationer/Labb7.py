@@ -2,6 +2,10 @@ import Labb6_Class as shoping_item
 import Labb7_Class as gui
 import tkinter as tk
 import json
+
+import requests
+from bs4 import BeautifulSoup
+from io import BytesIO
 from PIL import Image, ImageTk
 
 
@@ -325,21 +329,42 @@ def showImgFromSearch():
     frame = tk.Frame(roBool.get_root(), pady=50, padx=40)
     frame.config(background="White")
     frame.grid(row=2, column=30)
-    tk.Label(frame, text="Visa bild på vara").grid(row=1, column=20, pady=7, padx=5)
+    tk.Label(frame,text="Sök och visa produkt").grid(row=1, column=20, pady=7, padx=5)
+    query_item = tk.Entry(frame, borderwidth=1, relief="solid")
+    query_item.grid(row=2,column=20)
 
-# Skapat fönster.
-parent = tk.Tk()
-parent.title("Produkt bild")
+    tk.Button(frame,text="sök", command=lambda: fetch_image(query_item.get(),frame)).grid(row=3, column=20, pady=7, padx=5)
 
-# Hämtar bilden från samma mapp
-image = PhotoImage(file="Ketchup.png")
 
-# Bild titel
-image_label = tk.Label(parent, image=image)
-image_label.pack()
+def fetch_image(query,frame):
 
-# Start the Tkinter event loop
-parent.mainloop()
+    search_url = f"https://www.google.com/search?tbm=isch&q={query}"
+
+    headers = {
+        "User-Agent": "Mozilla/5.0"
+    }
+
+    response = requests.get(search_url, headers=headers)
+    soup = BeautifulSoup(response.text, "html.parser")
+
+    image_tags = soup.find_all("img")
+    img_label= tk.Lable(frame)
+    if len(image_tags) > 1:
+        img_url = image_tags[1]["src"]  # Första bilden är oftast Googles logga, så vi tar den andra
+        image_response = requests.get(img_url)
+        img_data = Image.open(BytesIO(image_response.content))
+        img_data = img_data.resize((300, 300))  # Ändra storlek på bilden
+        img = ImageTk.PhotoImage(img_data)
+
+
+
+        img_label.config(image=img)
+        img_label.image = img
+    else:
+        img_label.config(text="Ingen bild hittades.")
+    img_label.grid(row=1, column=20, pady=7, padx=5)
+
+
 
 
 def totalCostPerItem():
