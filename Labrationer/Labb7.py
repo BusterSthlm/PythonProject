@@ -386,8 +386,6 @@ def fetch_image(query,frame):
 
 
 
-
-
 def totalCostPerItem():
     roBool.set_bools(True)
     gemetry(roBool.get_root(), roBool.get_bools())
@@ -404,12 +402,13 @@ def totalCostPerItem():
 
 def calculation(product_name, frame):
     # beräkning
+    product_name = product_name.get()
     for name in groceries:
         if name.get_name() == product_name:
             total_price = name.get_count() * name.get_price()
-            tk.Label(frame, text=f"totala priset på varan: {total_price} kr")
-            result_label = tk.Label(frame, text="")
-            result_label.grid(row=5, column=20)
+            tk.Label(frame, text=f"totala priset på varan: {total_price} kr").grid(row=5, column=20)
+            #result_label = tk.Label(frame, text="")
+            #result_label.grid(row=5, column=20)
 
 
 
