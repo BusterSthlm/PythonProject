@@ -319,7 +319,7 @@ def emptyShoppingList():
     frame = tk.Frame(roBool.get_root(), pady=50, padx=40, background="White")
     frame.grid(row=2, column=30)
 
-    # Labels & Buttons
+    # Labels & Button
     tk.Label(frame, text="Rensa listan").grid(row=1, column=20, pady=7, padx=5)
     tk.Text(frame, height=5, width=30).grid(row=4, column=0, columnspan=3)
 
@@ -343,7 +343,7 @@ def empty(resultat):
 
 ######################### SHOW IMG FROM SEARH #############
 def showImgFromSearch():
-#Skapar ut vyn för GUI
+# Skapar vyn för GUI
     roBool.set_bools(True)
     gemetry(roBool.get_root(), roBool.get_bools())
     frame = tk.Frame(roBool.get_root(), pady=50, padx=40)
@@ -357,36 +357,35 @@ def showImgFromSearch():
 
 
 def fetch_image(query,frame):
-
+    # Google sökning
     search_url = f"https://www.google.com/search?tbm=isch&q={query}"
-
+    # User agents används för att undvika att sökningen blir blockerad
     headers = {
         "User-Agent": "Mozilla/5.0"
     }
-
+    #Skickar förfågan och hämtar
     response = requests.get(search_url, headers=headers)
     soup = BeautifulSoup(response.text, "html.parser")
 
     image_tags = soup.find_all("img")
-    img_label= tk.Label(frame)
-    if len(image_tags) > 1:
+    img_label= tk.Label(frame) # Här ska bilden hamnna sen
+    if len(image_tags) > 1: #Om vi hittar en bild
         img_url = image_tags[1]["src"]  # Första bilden är oftast Googles logga, så vi tar den andra
         image_response = requests.get(img_url)
         img_data = Image.open(BytesIO(image_response.content))
         img_data = img_data.resize((300, 300))  # Ändra storlek på bilden
         img = ImageTk.PhotoImage(img_data)
-
-
-
+        #uppdatera bilden
         img_label.config(image=img)
         img_label.image = img
     else:
-        img_label.config(text="Ingen bild hittades.")
+        img_label.config(text="Ingen bild hittades.") #Meddelar om ingen bild hittas
     img_label.grid(row=1, column=20, pady=7, padx=5)
 
 
 
 def totalCostPerItem():
+    # Skapar vyn för GUI
     roBool.set_bools(True)
     gemetry(roBool.get_root(), roBool.get_bools())
     frame = tk.Frame(roBool.get_root(), pady=200, padx=110)
@@ -401,12 +400,14 @@ def totalCostPerItem():
 
 
 def calculation(product_name, frame):
-    # beräkning
+    # Hämtar datan från Entry
     product_name = product_name.get()
+
+    # Här loopar vi igenom Grocries och kollar om namnet finns.
     for name in groceries:
         if name.get_name() == product_name:
-            total_price = name.get_count() * name.get_price()
-            tk.Label(frame, text=f"totala priset på varan: {total_price} kr").grid(row=5, column=20)
+            total_price = name.get_count() * name.get_price() #uträkning antalet * priset
+            tk.Label(frame, text=f"totala priset på varan: {total_price} kr").grid(row=5, column=20) # Skriver ut
             #result_label = tk.Label(frame, text="")
             #result_label.grid(row=5, column=20)
 
