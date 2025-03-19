@@ -2,6 +2,7 @@ import Labb6_Class as shoping_item
 import Labb7_Class as gui
 import tkinter as tk
 import json
+from PIL import Image, ImageTk
 
 
 roBool=gui.GUI()
@@ -30,15 +31,15 @@ def get_menu_text(root):
              "6. Spara shopping listan I en JSON fil",
              "7. Tömma hela shoppinglistan på varor",
              "8. Visa bild på sökt vara",
-             "9.Total kostnaden",
-             "10.Avsluta programet"]
+             "9. Total kostnaden",
+             "10. Avsluta programet"]
     for i in range(0, 10):
         tk.Label(root, text=message[i],width=40).grid(row=i+1, column=1,pady=6)
 
 def button_maker(root):
-    comandPromts=[add_To_Item_list,find_item_serch,check_list,Render_New_Count_And_Price,RemoveKeyItemFromShopLift,wrightUserItemlist]
+    comandPromts=[add_To_Item_list,find_item_serch,check_list,Render_New_Count_And_Price,RemoveKeyItemFromShopLift,wrightUserItemlist,emptyShoppingList,showImgFromSearch,totalCostPerItem, quit]
     #Lägg till ,command=comandPromts[i-1] när färdig med funktonerna
-    for i in range(1,7):
+    for i in range(1,11):
         button=tk.Button(root, text=str(i),width=5)
         button.grid(row=i, column=5,pady=13,padx=40)
         button.configure(command=comandPromts[i-1])
@@ -304,6 +305,71 @@ def readUserItems():
         #print(dictanary)
         listing=add_items(dictanary)
     return listing
+############### Empty Shopping list ################
+def emptyShoppingList():
+    #Skapar ut vyn för GUI
+    roBool.set_bools(True)
+    gemetry(roBool.get_root(), roBool.get_bools())
+    frame = tk.Frame(roBool.get_root(), pady=50, padx=40)
+    frame.config(background="White")
+    frame.grid(row=2, column=30)
+    tk.Label(frame, text="Rensa listan").grid(row=1, column=20, pady=7, padx=5)
+    tk.Text(frame, height=5, width=30).grid(row=4, column=0, columnspan=3)
+    groceries.clear()
+
+######################### SHOW IMG FROM SEARH #############
+def showImgFromSearch():
+#Skapar ut vyn för GUI
+    roBool.set_bools(True)
+    gemetry(roBool.get_root(), roBool.get_bools())
+    frame = tk.Frame(roBool.get_root(), pady=50, padx=40)
+    frame.config(background="White")
+    frame.grid(row=2, column=30)
+    tk.Label(frame, text="Visa bild på vara").grid(row=1, column=20, pady=7, padx=5)
+
+# Skapat fönster.
+parent = tk.Tk()
+parent.title("Produkt bild")
+
+# Hämtar bilden från samma mapp
+image = PhotoImage(file="Ketchup.png")
+
+# Bild titel
+image_label = tk.Label(parent, image=image)
+image_label.pack()
+
+# Start the Tkinter event loop
+parent.mainloop()
+
+
+def totalCostPerItem():
+#Skapar ut vyn för GUI
+    roBool.set_bools(True)
+    gemetry(roBool.get_root(), roBool.get_bools())
+    frame = tk.Frame(roBool.get_root(), pady=50, padx=40)
+    frame.config(background="White")
+    frame.grid(row=2, column=30)
+    tk.Label(frame, text="Visa priset total priset för alla av samma vara ").grid(row=1, column=20, pady=7, padx=5)
+
+#test
+    totalCost = tk.Label(frame,text="priset (för en produkt):")
+    totalCost.grid(row=4, column=20,pady=50,padx=40)
+    price = tk.Entry(frame,borderwidth=1, relief="solid")
+    price.grid(row=4, column=22)
+# Skapar knappen
+    button = tk.Button(frame, text="Räkna ut")
+    button.grid(row=5, column=20, pady=20)
+    #messageText.grid(row=6, column=20)
+
+def quit():
+    exit()
+
+
+
 ############################################################################################
 if __name__ == '__main__':
     main()
+
+
+
+#### TEST IMG
