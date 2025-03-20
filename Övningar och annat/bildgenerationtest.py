@@ -1,5 +1,7 @@
 import tkinter as tk
 from tkinter import Entry, Button, Label
+
+########################################
 import requests
 from bs4 import BeautifulSoup
 from io import BytesIO
@@ -18,6 +20,7 @@ def fetch_image():
     soup = BeautifulSoup(response.text, "html.parser")
 
     image_tags = soup.find_all("img")
+    img_label = tk.Label(frame)
     if len(image_tags) > 1:
         img_url = image_tags[1]["src"]  # Första bilden är oftast Googles logga, så vi tar den andra
         image_response = requests.get(img_url)
@@ -25,11 +28,12 @@ def fetch_image():
         img_data = img_data.resize((300, 300))  # Ändra storlek på bilden
         img = ImageTk.PhotoImage(img_data)
 
+
         img_label.config(image=img)
         img_label.image = img
     else:
         img_label.config(text="Ingen bild hittades.")
-
+    img_label.grid(row=5,column=20)
 
 # Skapa Tkinter GUI
 root = tk.Tk()

@@ -16,15 +16,15 @@ def main():
     #userList=get_userList()
     roBool.get_root().title("Labb7 GUI")
     roBool.get_root().config(background="White")
-    gemetry(roBool.get_root(), roBool.get_bools())
-    frame = tk.Frame(roBool.get_root(), pady=10, padx=5)
+    gemetry(roBool.get_root(), roBool.get_bools())#visar hur stor skärmen på aplicationen ska vara
+    frame = tk.Frame(roBool.get_root(), pady=10, padx=5)#framen gör så det blir inget att flyta plats med varandra
     frame.config(background="White")
     frame.grid(row=2, column=0)
-    get_menu_text(frame)
-    button_maker(frame)
+    get_menu_text(frame)#lägger till frame som en root då jag vill att det ska hamna i framen för en finare desinge och flexibare ram
+    button_maker(frame)#lägger till frame som en root då jag vill att det ska hamna i framen för en finare desinge och flexibare ram
     readUserItems()
     display_counts()
-    roBool.get_root().mainloop()
+    roBool.get_root().mainloop()#startar hela aplicationen och stängs efter man tryckt på avslutnings knappen
 
 ##############################menu text rendering###########################################
 def get_menu_text(root):
@@ -38,19 +38,19 @@ def get_menu_text(root):
              "8. Visa bild på sökt vara",
              "9. Total kostnaden",
              "10. Avsluta programet"]
-    for i in range(0, 10):
+    for i in range(0, 10):#skapar alla texter till varje knapp inviduelt
         tk.Label(root, text=message[i],width=40).grid(row=i+1, column=1,pady=6)
 
 def button_maker(root):
     comandPromts=[add_To_Item_list,find_item_serch,check_list,Render_New_Count_And_Price,RemoveKeyItemFromShopLift,wrightUserItemlist,emptyShoppingList,showImgFromSearch,totalCostPerItem, quit]
     #Lägg till ,command=comandPromts[i-1] när färdig med funktonerna
-    for i in range(1,11):
+    for i in range(1,11):#skapar knappar och soclar ut också komando för varje funtion som fins i listan ovanför
         button=tk.Button(root, text=str(i),width=5)
         button.grid(row=i, column=5,pady=13,padx=40)
         button.configure(command=comandPromts[i-1])
 
 def gemetry(root,bools):
-    return root.geometry(f"{get_size_up(bools)}x600")
+    return root.geometry(f"{get_size_up(bools)}x600")#storlekten på aplication
 
 def get_size_up(value):
     size=""
@@ -58,22 +58,23 @@ def get_size_up(value):
         size="850"
     else:
         size="380"
-    return size
+    return size#storlekten på skärmen i x led
 
 ############################################################################################
 
 ##############################lägg till mer items 1#########################################
 def add_To_Item_list():
     roBool.set_bools(True)
-    gemetry(roBool.get_root(), roBool.get_bools())
-    frame = tk.Frame(roBool.get_root(),pady=40,padx=5)
+    gemetry(roBool.get_root(), roBool.get_bools())#visar hur stor skärmen på aplicationen ska vara
+    frame = tk.Frame(roBool.get_root(),pady=40,padx=5)#framen gör så det blir inget att flyta plats med varandra
     frame.config(background="White")
     frame.grid(row=2, column=30)
+    #skapar variablar och olika grer som label, Entry, Button, Text i denna funkton
     mainText =tk.Label(frame,text="Lägg till en vara")
     mainText.grid(row=1, column=20, pady=7, padx=5)
-    nameText = tk.Label(frame, text="Namn:")
+    nameText = tk.Label(frame, text="Namn:")#label är som en text men du kan ej skriva till det är en fast text
     nameText.grid(row=2, column=20, pady=7, padx=5)
-    name = tk.Entry(frame,borderwidth=1, relief="solid")
+    name = tk.Entry(frame,borderwidth=1, relief="solid")#entry skriver du in något i sig och kan sicka informationen vidare via en knapp
     name.grid(row=2, column=22)
     countText = tk.Label(frame,text="Antal:")
     countText.grid(row=3, column=20,pady=7,padx=5)
@@ -83,20 +84,21 @@ def add_To_Item_list():
     priceText.grid(row=4, column=20,pady=7,padx=5)
     price = tk.Entry(frame,borderwidth=1, relief="solid")
     price.grid(row=4, column=22)
-    messageText = tk.Text(frame,width=30,height=3,borderwidth=1, relief="solid")
+    messageText = tk.Text(frame,width=30,height=3,borderwidth=1, relief="solid")#skapar en text och det r som en text area du kan lägga en stor mängd av text i inom ett område
+    #button är en knapp man trycker på för att för fulla en komandot
     button=tk.Button(frame,text="Lägg till I shoping listan",command=lambda :add_List([name.get(),int(count.get()),int(price.get())],messageText))
     button.grid(row=5, column=20,pady=20)
     messageText.grid(row=6, column=20)
 
 def add_List(list,messageText):
     Item_list = shoping_item.Shopping_item(list[0], list[1], list[2])
-    messageText.insert(1.0,str(f"Name: {list[0]}\nAntal: {list[1]}st\nPriset (för en produkt): {list[2]}kr\n{30*"-"}\n"))
+    messageText.insert(1.0,str(f"Name: {list[0]}\nAntal: {list[1]}st\nPriset (för en produkt): {list[2]}kr\n{30*"-"}\n"))#lägger in all information som ska läggas till i text arean
     groceries.append(Item_list)
     display_counts()
 ############################################################################################
 ############################print out antalet 2#############################################
 def get_total_count():
-    counts = groceries
+    counts = groceries#tar fram hur mycket varor det fins i listan
     return counts
 #def sendResolt(awnser):
 #    pick = tk.Label(roBool.get_root())
@@ -114,7 +116,7 @@ def get_total_count():
 #    tk.Radiobutton(roBool.get_root(),text="off",variable=val, value="N").grid(row=1,column=15)
 #    tk.Button(roBool.get_root(),text="Turn On/Off",command=lambda :sendResolt(val)).grid(row=3,column=13)
 def display_counts():
-    tk.Label(roBool.get_root(),text=f"Antal varor som finns i listan: {len(get_total_count())}").grid(row=3, column=0)
+    tk.Label(roBool.get_root(),text=f"Antal varor som finns i listan: {len(get_total_count())}").grid(row=3, column=0)#printar ut allt I GUIt
 
 ############################################################################################
 ############################Sök på valfri vara 3############################################
@@ -135,9 +137,9 @@ def find_item_serch():
     messageText.grid(row=6, column=23)
 def list_name(name,messageText):
     items=groceries
-    for item in items:
+    for item in items:#söker listan för att hitta varorna
         if name.get() == item.get_name():
-            messageText.insert(1.0,str(item))
+            messageText.insert(1.0,str(item))#printar ut all information ifrån varan du letade efter
 ############################################################################################
 ############################Print out all info 4############################################
 def check_list():
@@ -149,7 +151,7 @@ def check_list():
     tk.Label(frame, text="Alla varor").grid(row=1, column=20, pady=7, padx=5)
     user_list =groceries
     messageText = tk.Text(frame, width=30, height=16, borderwidth=1, relief="solid")
-    for list in user_list:
+    for list in user_list:#skriver ut hela shoping listan
         messageText.insert(1.0,str(list))
     messageText.grid(row=3, column=20)
 ############################################################################################
@@ -184,7 +186,7 @@ def Render_New_Count_And_Price():
 def SearchName_ChangeCountAndPrice(Item_Name,Count,Price,messageText):
     shopingList=groceries
     for list in shopingList:
-        if list.get_name() == Item_Name:
+        if list.get_name() == Item_Name:#kollar igenom texten och tills namnet och listan på varan sämmer över nr vi ändrar numret
             list.set_count(int(Count.get()))
             list.set_price(int(Price.get()))
             messageText.insert(1.0,str(list))
@@ -204,7 +206,7 @@ def RemoveKeyItemFromShopLift():
     itemText.grid(row=3, column=20, pady=7, padx=5)
     item = tk.Entry(frame, borderwidth=1, relief="solid")
     item.grid(row=4, column=20)
-    ButtonFrame=tk.Frame(frame,pady=10,padx=10)
+    ButtonFrame=tk.Frame(frame,pady=10,padx=10)#skapar en fram till hr fr två olika knappar som vill på samma plats
     ButtonFrame.config(background="White")
     ButtonFrame.grid(row=5, column=20)
     if len(groceries) != 0:
@@ -214,6 +216,7 @@ def RemoveKeyItemFromShopLift():
         NoButton = tk.Button(ButtonFrame, text="Ta bort Item")
         NoButton.grid(row=5, column=20, pady=20)
 def generate_keyNames(lists,frame):
+    #vissar exempel och hur många varor i sturkturen man kan ta bort
     titel = tk.Label(frame, text="All keys du kan ta bort")
     titel.grid(row=2,column=21,pady=10,padx=10)
     instruction = tk.Label(frame, text="Exempel på hur du skriver in:\nItem1")
@@ -231,7 +234,7 @@ def removeItemUpdate(list,frame):
     dictList = AddItemToDictanaryWithNameID(groceries)
     for keys in dictList.keys():
         if list == keys:
-            choice=list
+            choice=list#gick igenom alla nycklar och stmde överens med varabdra och sickar vidare valet till bort taging
     removeItem(choice,dictList,frame)
     display_counts()
 
@@ -241,15 +244,15 @@ def removeItem(name,dictlist,frame):
     for keys,value in dictlist.items():
         #print(keys) Här kan man se testnings sättet man kan använda för att se om saker passerar
         #print(name)
-        if name == keys:
+        if name == keys: #namnet är lika med varandra så kollar den igenom indexet för att ta fram rätt namn av produkten
             #print("Pass1")
             if value[0] == save[index].get_name():
                 #print("Pass2")
                 corectIndex=index
-                groceries.pop(corectIndex)
+                groceries.pop(corectIndex)#removar itemnet ifrån listan
         #print("NoPass")
         index+=1
-    generate_keyNames(groceries, frame)
+    generate_keyNames(groceries, frame)#updaterar Exempel texten till att som ny
 
 
 ############################################################################################
@@ -263,7 +266,7 @@ def get_userList():
 def AddItemToDictanaryWithNameID(Value):
     dictanary={}
     count=1
-    for items in Value:
+    for items in Value:#generarar en nyckel och sickar upp alla ditaljjer till en list som där efter sickar in allt i en diractanary
         ListItem = []
         key = "Item"
         key=f"{key+str(count)}"
@@ -271,13 +274,14 @@ def AddItemToDictanaryWithNameID(Value):
         ListItem.append(items.get_name())
         ListItem.append(items.get_count())
         ListItem.append(items.get_price())
-        dictanary[str(key)]=ListItem
+        dictanary[str(key)]=ListItem#sicakr in all infor till dictanaryn
     return dictanary
 
 def add_items(items):
     userList=[]
     for listValue in items.values():
         Item_list=shoping_item.Shopping_item(listValue[0],listValue[1],listValue[2])
+        #Här skiver vi in alla instruktioner till listan som vi läst in ifrån JSON filen eller första tre varoran som ska pasera
         userList.append(Item_list)
         groceries.append(Item_list)
     return userList
@@ -294,15 +298,15 @@ def wrightUserItemlist():
     item_list=groceries
     shopList=AddItemToDictanaryWithNameID(item_list)
     with open('shoping_list.JSON', 'w', encoding='utf-8-sig') as file:
-        file.write(json.dumps(shopList))
+        file.write(json.dumps(shopList))#öpnar och skapar/skiver in till en Spar fill som lägger till all data som vi laggt till i en JSON fill som en diractonary
 
 def readUserItems():
     listing=[]
     try:
         with open('shoping_list.JSON', 'r', encoding='utf-8-sig') as file:
-            listing = add_items(json.load(file))
+            listing = add_items(json.load(file))#läser en JSON fill om den finns om inte
     except FileNotFoundError:
-        dictanary={
+        dictanary={#så sickar detta ut till koden istllert som bas varorna
             "Item1":["Mjölk",2,100],
             "Item2":["Bröd",3,80],
             "Item3":["Godis",6,60]
