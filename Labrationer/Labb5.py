@@ -145,8 +145,18 @@ def Save_And_Add_to_list(titel,message):
 # 9. Lägg tillbaka item i listan på en specifik plats.
 def Add_item_to_list_specific_place():
    new_item = simpledialog.askstring("New item","Add new item to shoppinglist to second place in the list :")
-   global groceries
-   groceries.insert(1,new_item)
+   list_item = groceries
+   count = 1
+   index = simpledialog.askfloat("index", f"Skriv in ett nummer mellan 1-{len(groceries)} vart du vill i listan: ")
+   groceries.clear()
+   for item in list_item:
+       if count == index:
+           groceries.append(new_item)
+       groceries.append(item)
+       count+=1
+
+
+
    print(groceries)
 
 # 10. Sorterar a-z

@@ -253,7 +253,7 @@ def removeItem(name,dictlist,frame):
 
 
 ############################################################################################
-#######################read and wrirgt till JSON file 7#####################################
+#######################read and wrirgt till JSON file 7 #####################################
 #Read and wright to JSON file and auto generate the list again to see all items corect
 #lägg till Items i en array och en auto genererande ID lista
 def get_userList():
@@ -329,24 +329,23 @@ def emptyShoppingList():
     result_label.grid(row=3, column=0, pady=10)
     tk.Button(frame, text="töm listan", command=lambda:empty(result_label)).grid(row=2, column=0)  # Fixed button command
 
-def empty(resultat):
+def empty(text):
     groceries.clear()
     try:
-        with open('shoping_list.JSON', 'r', encoding='utf-8-sig') as file:
-            os.remove('shoping_list.JSON')
+        os.remove('shoping_list.JSON')
+
     except FileNotFoundError:
         pass
-    resultat.config(text="listan har blivit tömt")
+    text.config(text="listan blivit tömd")
 
 
 
-
-######################### SHOW IMG FROM SEARH #############
+######################### SHOW IMG FROM SEARH  8#############
 def showImgFromSearch():
 # Skapar vyn för GUI
     roBool.set_bools(True)
     gemetry(roBool.get_root(), roBool.get_bools())
-    frame = tk.Frame(roBool.get_root(), pady=50, padx=40)
+    frame = tk.Frame(roBool.get_root(), pady=60, padx=140)
     frame.config(background="White")
     frame.grid(row=2, column=30)
 
@@ -384,7 +383,8 @@ def fetch_image(query,frame):
     img_label.grid(row=1, column=20, pady=7, padx=5)
 
 
-
+####################################################
+## 10
 def totalCostPerItem():
     # Skapar vyn för GUI
     roBool.set_bools(True)
@@ -395,8 +395,8 @@ def totalCostPerItem():
     tk.Label(frame, text="Sök på en vara för att få fram totala priset").grid(row=2, column=20)
     tk.Label(frame,text="Namn:").grid(row=3, column=20)
     product_name = tk.Entry(frame, borderwidth=1, relief="solid")
-    product_name.grid(row=3, column=25)
-    tk.Button(frame, text="Beräkna varan",  command=lambda:calculation(product_name,frame)).grid(row=4, column=20 ) # funktionnamn, prodctu name, frame
+    product_name.grid(row=4, column=20)
+    tk.Button(frame, text="Beräkna varan",  command=lambda:calculation(product_name,frame)).grid(row=5, column=20,pady=10, padx=10 ) # funktionnamn, prodctu name, frame
 
 
 
@@ -408,15 +408,12 @@ def calculation(product_name, frame):
     for name in groceries:
         if name.get_name() == product_name:
             total_price = name.get_count() * name.get_price() #uträkning antalet * priset
-            tk.Label(frame, text=f"totala priset på varan: {total_price} kr").grid(row=5, column=20) # Skriver ut
+            tk.Label(frame, text=f"totala priset på varan: {total_price} kr").grid(row=6, column=20) # Skriver ut
             #result_label = tk.Label(frame, text="")
             #result_label.grid(row=5, column=20)
 
 
-
-
-
-
+#12 #########
 def quit():
     exit()
 
