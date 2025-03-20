@@ -118,8 +118,8 @@ def remove_text(name=""):
 
 
 
-#Read and write functions
-#read groceries list
+
+# läser groceri listan
 def read_list():
     user_shop_cart_list=""
     for lists in groceries:
@@ -129,7 +129,8 @@ def read_list():
     else:
         messagebox.showinfo("List", f"Shoping listan ser ut så här\n{user_shop_cart_list}")
 
-# write and save the groceries list in a txt file
+
+# Skriv och spara groceri listan i en txt fil.
 def Save_And_Add_to_list(titel,message):
     with open('user_shop_list.txt', 'w', encoding='utf-8') as fil:
         for items in groceries:
@@ -137,7 +138,7 @@ def Save_And_Add_to_list(titel,message):
         messagebox.showinfo(titel,message)
 
 
-# 9. Add item back to the list in a specific place.
+# 9. Lägg tillbaka item i listan på en specifik plats.
 def Add_item_to_list_specific_place():
    new_item = simpledialog.askstring("New item","Add new item to shoppinglist to second place in the list :")
    global groceries
@@ -145,14 +146,14 @@ def Add_item_to_list_specific_place():
    print(groceries)
 
 
-# 10. Order
+# 10. Sorterar Enli
 def Order_list_alphabeticly():
     groceries.sort(key=str.lower)
     print(groceries)
 
 
 
-# 11.Empty_whole_list
+# 11.Empty_whole_list, Tar bort alla element i listan
 def Empty_whole_list():
     groceries.clear()
     print(f"Your {groceries} list have been cleared")

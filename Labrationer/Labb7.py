@@ -312,7 +312,7 @@ def readUserItems():
     return listing
 ############### Empty Shopping list ################
 def emptyShoppingList():
-
+    # Skapar vyn för GUI
     roBool.set_bools(True)
     gemetry(roBool.get_root(), roBool.get_bools())
 
@@ -349,6 +349,7 @@ def showImgFromSearch():
     frame = tk.Frame(roBool.get_root(), pady=50, padx=40)
     frame.config(background="White")
     frame.grid(row=2, column=30)
+
     tk.Label(frame,text="Sök och visa produkt").grid(row=1, column=20, pady=7, padx=5)
     query_item = tk.Entry(frame, borderwidth=1, relief="solid")
     query_item.grid(row=2,column=20)

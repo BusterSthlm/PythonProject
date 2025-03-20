@@ -236,7 +236,7 @@ def calculate_total_price_for_product(shop_list, screen_pick):
             if item.get_name() == product_name: # Om namnet stämmer gångrar den antalet med priset.
                  print(f"totala priset för alla {product_name} är {item.get_count() * item.get_price()}")
 
-
+# Skriver ut avslut meddeladen på två olika sätt.
 def program_render_ending(screen_pick):
     if screen_pick:
         messagebox.showinfo("Avslutar","Avslutar programet!")
