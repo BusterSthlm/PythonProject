@@ -71,6 +71,7 @@ def render_menu_list(menu):
     return messege
 
 
+# 1.
 #functions of calcalations
 def cheack_user_list(titel,messgae):
     try:
@@ -81,9 +82,21 @@ def cheack_user_list(titel,messgae):
     except FileNotFoundError:
         messagebox.showinfo("info","file not fund")
 
+# 2.läser groceri listan
+def read_list():
+    user_shop_cart_list=""
+    for lists in groceries:
+        user_shop_cart_list = user_shop_cart_list+lists
+    if user_shop_cart_list=="":
+        messagebox.showinfo("List","Shoping listan är tom")
+    else:
+        messagebox.showinfo("List", f"Shoping listan ser ut så här\n{user_shop_cart_list}")
+
+# 3.Lägg till i listan
 def add_to_list(list):
     groceries.append(list)
 
+# 4. Skriv ut hela listan
 def cheack_list_items(titel,message,check_item_lists):
     item_list=0
     for items in groceries:
@@ -93,12 +106,15 @@ def cheack_list_items(titel,message,check_item_lists):
     else:
         return item_list
 
+# 5. Välj item nummer
 def index_list(number=0,item_count=0):
     if item_count > number:
         messagebox.showinfo("Item Picked", f"You have picked the item {groceries[number]}")
     else:
         messagebox.showwarning("Varning", f"Invalid nummer välj ett nummer mellan 0-{item_count - 1}")
 
+
+# 6. Ta bort item från listan
 def remove_index(number=0,item_count=0):
     if item_count > number:
         messagebox.showinfo("Removed Item", f"You have removed the Item {groceries[number]}")
@@ -106,6 +122,8 @@ def remove_index(number=0,item_count=0):
     else:
         messagebox.showwarning("Varning", f"Invalid nummer välj ett nummer mellan 0-{item_count - 1}")
 
+
+# 7 Välj en plats från listan och ta bort
 def remove_text(name=""):
     notfound=True
     for item in groceries:
@@ -116,27 +134,13 @@ def remove_text(name=""):
     if notfound:
         messagebox.showwarning("Varning", f"Invalid text välj ett namn ifrån shoping listan för att remova ett item")
 
-
-
-
-# läser groceri listan
-def read_list():
-    user_shop_cart_list=""
-    for lists in groceries:
-        user_shop_cart_list = user_shop_cart_list+lists
-    if user_shop_cart_list=="":
-        messagebox.showinfo("List","Shoping listan är tom")
-    else:
-        messagebox.showinfo("List", f"Shoping listan ser ut så här\n{user_shop_cart_list}")
-
-
+#8 -
 # Skriv och spara groceri listan i en txt fil.
 def Save_And_Add_to_list(titel,message):
     with open('user_shop_list.txt', 'w', encoding='utf-8') as fil:
         for items in groceries:
             fil.write(items)
         messagebox.showinfo(titel,message)
-
 
 # 9. Lägg tillbaka item i listan på en specifik plats.
 def Add_item_to_list_specific_place():
@@ -145,8 +149,7 @@ def Add_item_to_list_specific_place():
    groceries.insert(1,new_item)
    print(groceries)
 
-
-# 10. Sorterar Enli
+# 10. Sorterar a-z
 def Order_list_alphabeticly():
     groceries.sort(key=str.lower)
     print(groceries)
@@ -157,6 +160,7 @@ def Order_list_alphabeticly():
 def Empty_whole_list():
     groceries.clear()
     print(f"Your {groceries} list have been cleared")
+
 
 
 
