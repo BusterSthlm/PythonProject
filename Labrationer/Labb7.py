@@ -26,7 +26,7 @@ def main():
     display_counts()
     roBool.get_root().mainloop()#startar hela aplicationen och stängs efter man tryckt på avslutnings knappen
 
-##############################menu text rendering###########################################
+##############################menu text rendering############################################
 def get_menu_text(root):
     message=["1. Lägg till varor",
              "2. Söka namn på varan & printa ut all data om varan",
