@@ -96,9 +96,9 @@ def add_List(list,messageText):
     groceries.append(Item_list)
     display_counts()
 ############################################################################################
-############################print out antalet 2#############################################
+############################ 2 print out antalet  #############################################
 def get_total_count():
-    counts = groceries#tar fram hur mycket varor det fins i listan
+    counts = groceries #Skickar vidare groceries till display_Count.
     return counts
 #def sendResolt(awnser):
 #    pick = tk.Label(roBool.get_root())
@@ -116,8 +116,8 @@ def get_total_count():
 #    tk.Radiobutton(roBool.get_root(),text="off",variable=val, value="N").grid(row=1,column=15)
 #    tk.Button(roBool.get_root(),text="Turn On/Off",command=lambda :sendResolt(val)).grid(row=3,column=13)
 def display_counts():
-    tk.Label(roBool.get_root(),text=f"Antal varor som finns i listan: {len(get_total_count())}").grid(row=3, column=0)#printar ut allt I GUIt
-
+    tk.Label(roBool.get_root(),text=f"Antal varor som finns i listan: {len(get_total_count())}").grid(row=3, column=0) #printar ut allt I GUIt
+    #Genom Lable skriver vi ut längden(len)
 ############################################################################################
 ############################Sök på valfri vara 3############################################
 def find_item_serch():
@@ -314,7 +314,7 @@ def readUserItems():
         #print(dictanary)
         listing=add_items(dictanary)
     return listing
-############### Empty Shopping list ################
+############### 8. Empty Shopping list ####################################
 def emptyShoppingList():
     # Skapar vyn för GUI
     roBool.set_bools(True)
@@ -323,7 +323,7 @@ def emptyShoppingList():
     frame = tk.Frame(roBool.get_root(), pady=50, padx=40, background="White")
     frame.grid(row=2, column=30)
 
-    # Labels & Button
+    #textyta
     tk.Label(frame, text="Rensa listan").grid(row=1, column=20, pady=7, padx=5)
     tk.Text(frame, height=5, width=30).grid(row=4, column=0, columnspan=3)
 
@@ -331,7 +331,7 @@ def emptyShoppingList():
     # Skriver ut bekräftelse
     result_label = tk.Label(frame, text="", background="White")
     result_label.grid(row=3, column=0, pady=10)
-    tk.Button(frame, text="töm listan", command=lambda:empty(result_label)).grid(row=2, column=0)  # Fixed button command
+    tk.Button(frame, text="töm listan", command=lambda:empty(result_label)).grid(row=2, column=0)
 
 def empty(text):
     groceries.clear()
@@ -341,10 +341,11 @@ def empty(text):
     except FileNotFoundError:
         pass
     text.config(text="listan blivit tömd")
+    display_counts()
 
 
 
-######################### SHOW IMG FROM SEARH  8#############
+######################### 9. SHOW IMG FROM SEARH  ###################
 def showImgFromSearch():
 # Skapar vyn för GUI
     roBool.set_bools(True)
@@ -417,7 +418,7 @@ def calculation(product_name, frame):
             #result_label.grid(row=5, column=20)
 
 
-#12 #########
+#11 #########
 def quit():
     exit()
 

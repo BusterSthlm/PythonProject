@@ -1,4 +1,4 @@
-from idlelib.debugger_r import gui_adap_oid
+
 from tkinter import messagebox, simpledialog
 
 groceries = ["bröd\n", "mjölk\n"]
@@ -152,13 +152,15 @@ def Add_item_to_list_specific_place():
 def Order_list_alphabeticly():
     groceries.sort(key=str.lower)
     print(groceries)
+    messagebox.showinfo("Sortering a-z",f"Alfabetisk ordning {groceries}")
 
 
 
 # 11.Empty_whole_list, Tar bort alla element i listan
 def Empty_whole_list():
     groceries.clear()
-    print(f"Your {groceries} list have been cleared")
+    messagebox.showinfo("Töm hela list",f"Your {groceries} list have been cleared")
+
 
 
 
