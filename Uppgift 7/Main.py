@@ -2,18 +2,18 @@ import tkinter as tk
 import GUI_Class as gui
 
 # Global
-font_root = gui.Gui_interface()
+font_root = gui.Gui_interface() # hämtar root.
 MainFrame = tk.Frame(font_root.get_root(), padx=5,pady=10)  # framen gör så det blir inget att flyta plats med varandra
-# Global
+
 
 ###############################################################################################################
 
 # Main funktionerna
 def main():
-    GUI_interface()
-    font_root.get_root().mainloop()
+    GUI_interact() #startar igång
+    font_root.get_root().mainloop() # Håller igång programmet tills vi stänger av.
 
-def GUI_interface():
+def GUI_interact(): # Start igång applicationen
     font_root.get_root().title("Uppgift 7")
     font_root.get_root().config(background="#6082B6")
     font_root.get_root().geometry("680x500")
@@ -70,8 +70,8 @@ def textArea(frame):
 
 
 
-
-# Skapa upp - Create
+#Dennis
+# 1. Skapa upp - Create
 def add_new_font():
     #första grejerna som läggs till i början
     functionFrame("#6082B6") #skapar frame för att gömma tidigare funktioner
@@ -91,14 +91,14 @@ def add_new_font():
 
 
 def add_font(new_font,text_contener):
-    font_dict=font_root.get_dict()
-    cheacking_dict_font=False
-    for font_names in font_root.get_dict().values():
-        if font_names == new_font:
-            cheacking_dict_font=True
-    if cheacking_dict_font:
+    font_dict=font_root.get_dict() #Tar in directionary som finns
+    cheacking_dict_font=False #kontrollerar om den är sann eller falsk
+    for font_names in font_root.get_dict().values(): #kontrollerar namn genom en loop.
+        if font_names == new_font: # kollar alla namn utifrån vad vi skrivit in.
+            cheacking_dict_font=True # om det är sann.
+    if cheacking_dict_font: # om det är sannn finns den redan i listan och går inte att skicka in igen.
         text_contener.insert(1.0, f"{new_font} finns redan i listan!\n")
-    else:
+    else: # eller så skickar vi in det som inte redan finns i listan.
         IdKey=f"{font_root.get_IdNumber()}"
         font_root.set_IDNumber(1)
         key=f"{font_root.get_Id()+IdKey}"
@@ -111,7 +111,7 @@ def add_font(new_font,text_contener):
 
 
 
-# Skriv ut - Read
+# 2. Skriv ut - JACK  Read
 def print_fonts():
     # första grejerna som läggs till i början
     functionFrame("#6082B6")#skapar frame för att gömma tidigare funktioner
@@ -124,7 +124,7 @@ def print_fonts():
 
 
 
-# Edit - Update
+# 3, Edit - Update
 def edit_font():
     # första grejerna som läggs till i början
     functionFrame("#6082B6")#skapar frame för att gömma tidigare funktioner
@@ -147,20 +147,20 @@ def edit_font():
     edit_fonts_button.grid(row=3, column=2, pady=5, padx=5)
 
 def editing_font(new_name,old_name,text_contener):
-    edit_cheack=True
+    edit_cheack=True #Kontrollering
     for font_keys,font_names in font_root.get_dict().items():# Om listan finns byter den ut namnet med ett nytt
-        if font_names == old_name:
-            font_dict=font_root.get_dict()
-            font_dict[font_keys]=new_name
+        if font_names == old_name: # Jämför gamla namnet med det som finns i directionary
+            font_dict=font_root.get_dict() # tar in existerande directionary
+            font_dict[font_keys]=new_name # Skriver in det nya värdet med nyckeln.
             text_contener.insert(1.0,f'typsnitt {old_name} ändrad till {new_name}!\n')
-            edit_cheack=False
-    if edit_cheack:
+            edit_cheack=False # Vi vill inte rediger mer.
+    if edit_cheack: # Om den är sann finns den inte i dictionaryn
         text_contener.insert(1.0,f'typsnitt {old_name} finns inte i dictanaryin!\n')
 ###############################################################################################################
 
 
 
-# Ta bort - Delete
+# 4. Ta bort - Delete - JACK
 def remove_font():
     functionFrame("#6082B6")#skapar frame för att gömma tidigare funktioner
     frame=functionFrame("Steel blue")#skapar frame för denna funktionen
@@ -178,19 +178,19 @@ def remove_font():
     remove_fonts_button.grid(row=3, column=2, pady=5, padx=5)
 
 def removing_font(remove_font,text_contener):
-    remove_cheack=True
-    remove_key=""
-    for remove_font_key,remove_font_name in font_root.get_dict().items():
-        if remove_font_name == remove_font:
-            remove_key=remove_font_key
-            text_contener.insert(1.0,f'Typsnitt {remove_font} har tagits bort!\n')
-            remove_cheack=False
-    if remove_cheack:
-        text_contener.insert(1.0,f'Typsnitt {remove_font} finns inte i listan!\n')
-    else:
+    remove_cheack=True # kontrollerar om det är sant.
+    remove_key="" # För att spara nyckelord
+    for remove_font_key,remove_font_name in font_root.get_dict().items(): # Loopar igenom directionary
+        if remove_font_name == remove_font: # kollar om nmanet stämmer överrens
+            remove_key=remove_font_key #Spara ner nyckelrodet /key
+            text_contener.insert(1.0,f'Typsnitt {remove_font} har tagits bort!\n') # Skriver ut att vi tagit bort det vi skrivit i.
+            remove_cheack=False # sätter den till false för att vi tagit bort det ska vi ta bort.
+    if remove_cheack: # kollar om vi inte tagit bort det vi ska.
+        text_contener.insert(1.0,f'Typsnitt {remove_font} finns inte i dictionary!\n') #
+    else: # Har sparat ner från nyckelorder directionary.
         font_dict = font_root.get_dict()
-        font_dict.pop(remove_key)
-        font_root.set_IDNumber(-1)
+        font_dict.pop(remove_key) # tas bort
+
 ###############################################################################################################
 
 
