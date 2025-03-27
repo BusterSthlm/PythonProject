@@ -8,5 +8,9 @@ class Gui_interface:
     def get_size(self):
         return self.__size
 
+    def get_name(self):
+        return self.__name
+
+
     def get_root(self):
         return self.__root
