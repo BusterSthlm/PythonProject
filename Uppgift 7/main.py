@@ -91,6 +91,7 @@ def add_new_font():
 
 
 def add_font(new_font,text_contener):
+    filtering = True
     font_dict=font_root.get_dict() #Tar in directionary som finns
     cheacking_dict_font=False #kontrollerar om den är sann eller falsk
     for font_names in font_root.get_dict().values(): #kontrollerar namn genom en loop.
@@ -99,12 +100,21 @@ def add_font(new_font,text_contener):
     if cheacking_dict_font: # om det är sannn finns den redan i listan och går inte att skicka in igen.
         text_contener.insert(1.0, f"{new_font} finns redan i listan!\n")
     else: # eller så skickar vi in det som inte redan finns i listan.
-        IdKey=f"{font_root.get_IdNumber()}"
-        font_root.set_IDNumber(1)
-        key=f"{font_root.get_Id()+IdKey}"
-        font_dict[key]=new_font
-        font_root.set_dict(font_dict)
-        text_contener.insert(1.0,f"Du har lagt till {new_font} i listan!\n")
+        if new_font == "":
+            filtering = False
+        if new_font == " ":
+            filtering = False
+        if new_font.isspace():
+            filtering = False
+        if filtering:
+            IdKey=f"{font_root.get_IdNumber()}"
+            font_root.set_IDNumber(1)
+            key=f"{font_root.get_Id()+IdKey}"
+            font_dict[key]=new_font
+            font_root.set_dict(font_dict)
+            text_contener.insert(1.0,f"Du har lagt till {new_font} i listan!\n")
+        else:
+            text_contener.insert(1.0, f"Ogiltigt värde inlaggt!\nSkriv ett giltigt värde.\n\n")
 
 ###############################################################################################################
 
